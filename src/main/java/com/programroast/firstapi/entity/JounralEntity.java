@@ -1,15 +1,35 @@
 package com.programroast.firstapi.entity;
 
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.stereotype.Component;
+
+import java.lang.annotation.Documented;
+import java.time.LocalDateTime;
+
+@Document
 public class JounralEntity {
-    private long id;
+
+    @Id
+    private ObjectId id;
     private String name;
     private String content;
+    private LocalDateTime createdAt;
 
-    public long getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
