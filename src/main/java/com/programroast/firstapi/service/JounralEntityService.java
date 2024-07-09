@@ -24,6 +24,7 @@ public class JounralEntityService {
     @Transactional
     public void saveEntry(JounralEntity jounralentity,String Username){
         jounralentity.setCreatedAt(LocalDateTime.now());
+        jounralentity.setOwner(Username);
         Optional<UserEntity> user = userEntityService.getbyusername(Username);
         if(user.isPresent()){
             JounralEntity j = jounralEntityRepo.save(jounralentity);
@@ -42,7 +43,7 @@ public class JounralEntityService {
 
     }
 
-
+    @Transactional
     public void deleteEntry(ObjectId MyId,String username){
         Optional<UserEntity> user = userEntityService.getbyusername(username);
         if(user.isPresent()){

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import com.programroast.firstapi.repository.UserEntityRepo;
 
@@ -16,6 +18,8 @@ public class UserEntityService {
     @Autowired
     private UserEntityRepo userentityrepo;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public void saveEntry(UserEntity userentity){
         userentityrepo.save(userentity);
@@ -24,6 +28,7 @@ public class UserEntityService {
     public List<UserEntity> getall(){
         return userentityrepo.findAll();
     }
+
 
     public Optional<UserEntity> getbyusername(String username){
         return userentityrepo.findByUsername(username);
