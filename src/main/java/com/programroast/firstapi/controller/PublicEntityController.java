@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+
 @RestController
 @RequestMapping("/public")
 public class PublicEntityController {
@@ -24,6 +26,9 @@ public class PublicEntityController {
     public ResponseEntity<UserEntity> addUserEntity(@RequestBody UserEntity userEntity) {
         try{
             userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
+            ArrayList<String> roles = new ArrayList<>();
+            roles.add("USER");
+            userEntity.setRoles(roles);
             userEntityService.saveEntry(userEntity);
             return new ResponseEntity<>(userEntity, HttpStatus.CREATED);
         }

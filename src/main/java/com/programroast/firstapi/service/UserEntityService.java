@@ -11,8 +11,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import com.programroast.firstapi.repository.UserEntityRepo;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class UserEntityService {
 
     @Autowired
@@ -32,8 +33,8 @@ public class UserEntityService {
 
     public Optional<UserEntity> getbyusername(String username){
         return userentityrepo.findByUsername(username);
-
     }
+
 
     public void deleteEntry(String username ){
         Optional<UserEntity> userentity = userentityrepo.findByUsername(username);
